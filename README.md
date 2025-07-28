@@ -49,16 +49,7 @@ https://www.netcup.com/en/?ref=257888
 Voucher de 5 euros:
 
 ```
-36nc17424834870
-```
-```
-36nc17415489990
-```
-```
-36nc17424834870
-```
-```
-36nc17415489990
+36nc17424834870, 36nc17415489990, 36nc17424834870, 36nc17415489990
 ```
 
 Arquivos para Docker em https://github.com/launcherbr/whaticketdocker
@@ -121,9 +112,39 @@ Arquivos para Docker em https://github.com/launcherbr/whaticketdocker
 🆕 Novo layout da página de login. </br>
 💬 Indicação “Digitando” ou “Gravando” aparece no ticket, no canto inferior direito, ao lado do nome. </br>
 
-Biblioteca Baileys Atualizada:</br>
+📚 Biblioteca Baileys Atualizada:</br>
 
-V 6.7.16
+V 6.7.18
+
+Correção da versão do Whatsapp Web. Alterações feitas com usuário deploy:
+
+Editar o arquivo baileys-version.json localizado na pasta /backend/node_modules/@whiskeysockets/baileys/lib/Defaults
+
+```
+su deploy
+cd
+cd whaticket
+```
+
+```
+nano /backend/node_modules/@whiskeysockets/baileys/lib/Defaults/baileys-version.son
+```
+
+Alterar: "version": [2, 3000, 1023223821] para:
+
+```
+"version": [2, 3000, 1025091846]
+```
+
+Execute os comandos para reiniciar a aplicação:
+
+```
+pm2 flush
+pm2 restart all
+pm2 log
+```
+
+Confira no log se consta a versão atual do Whatsapp Web.
 
 Instalador atualizado, versao NodeJS 20:
 
