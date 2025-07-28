@@ -127,7 +127,7 @@ cd whaticket
 ```
 
 ```
-nano /backend/node_modules/@whiskeysockets/baileys/lib/Defaults/baileys-version.son
+nano /backend/node_modules/@whiskeysockets/baileys/lib/Defaults/baileys-version.json
 ```
 
 Alterar: "version": [2, 3000, 1023223821] para:
