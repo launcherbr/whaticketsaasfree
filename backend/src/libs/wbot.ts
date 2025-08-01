@@ -11,7 +11,6 @@ import makeWASocket, {
   jidNormalizedUser,
   CacheStore
 } from "@whiskeysockets/baileys";
-import { makeInMemoryStore } from '@rodrigogs/baileys-store';
 import { Op } from "sequelize";
 import { FindOptions } from "sequelize/types";
 import Whatsapp from "../models/Whatsapp";
@@ -160,13 +159,12 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
         let retriesQrCode = 0;
 
         let wsocket: Session = null;
-        const store = makeInMemoryStore({
-          logger: loggerBaileys
-        });
+        
+        // Removido makeInMemoryStore que não existe mais na versão 6.7.16
+        // Usando apenas caches externos conforme exemplo oficial
 
         const { state, saveState } = await authState(whatsapp);
 
-        //const msgRetryCounterCache = new NodeCache();
         const userDevicesCache: CacheStore = new NodeCache();
 
         wsocket = makeWASocket({
@@ -177,50 +175,18 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             keys: makeCacheableSignalKeyStore(state.keys, logger),
           },
           version,
-		  browser: Browsers.appropriate("Desktop"),
+          browser: Browsers.appropriate("Desktop"),
           defaultQueryTimeoutMs: undefined,
           msgRetryCounterCache,
-		  markOnlineOnConnect: false,
-		  connectTimeoutMs: 25_000,
-		  retryRequestDelayMs: 500,
-		  getMessage: msgDB.get,
-		  emitOwnEvents: true,
+          markOnlineOnConnect: false,
+          connectTimeoutMs: 25_000,
+          retryRequestDelayMs: 500,
+          getMessage: msgDB.get,
+          emitOwnEvents: true,
           fireInitQueries: true,
-		  transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
+          transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
           shouldIgnoreJid: jid => isJidBroadcast(jid),
         });
-
-        // wsocket = makeWASocket({
-        //   version,
-        //   logger: loggerBaileys,
-        //   printQRInTerminal: false,
-        //   auth: state as AuthenticationState,
-        //   generateHighQualityLinkPreview: false,
-        //   shouldIgnoreJid: jid => isJidBroadcast(jid),
-        //   browser: ["Chat", "Chrome", "10.15.7"],
-        //   patchMessageBeforeSending: (message) => {
-        //     const requiresPatch = !!(
-        //       message.buttonsMessage ||
-        //       // || message.templateMessage
-        //       message.listMessage
-        //     );
-        //     if (requiresPatch) {
-        //       message = {
-        //         viewOnceMessage: {
-        //           message: {
-        //             messageContextInfo: {
-        //               deviceListMetadataVersion: 2,
-        //               deviceListMetadata: {},
-        //             },
-        //             ...message,
-        //           },
-        //         },
-        //       };
-        //     }
-
-        //     return message;
-        //   },
-        // })
 
         wsocket.ev.on(
           "connection.update",
@@ -383,7 +349,8 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
           }
         );
 
-        store.bind(wsocket.ev);
+        // Removida a linha que vinculava o store ao socket
+        // store.bind(wsocket.ev);
       })();
     } catch (error) {
       Sentry.captureException(error);
