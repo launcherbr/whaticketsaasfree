@@ -443,7 +443,7 @@ export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
     msg.message.listResponseMessage?.singleSelectReply?.selectedRowId ||
     msg?.message?.listResponseMessage?.singleSelectReply.selectedRowId ||
     msg.message.listResponseMessage?.contextInfo;
-  msg.message.senderKeyDistributionMessage;
+    msg.message.senderKeyDistributionMessage;
 
   // testar isso
 
@@ -452,7 +452,7 @@ export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
 export const getQuotedMessageId = (msg: proto.IWebMessageInfo) => {
   const body = extractMessageContent(msg.message)[
     Object.keys(msg?.message).values().next().value
-    ];
+  ];
   let reaction = msg?.message?.reactionMessage
     ? msg?.message?.reactionMessage?.key?.id
     : "";
@@ -920,8 +920,8 @@ const verifyMediaMessage = async (
           reject(err);
         });
       } else {
-          logger.info('Não é necessário converter o arquivo. Não é formato OGG.');
-          resolve(); // Resolve immediately since no conversion is needed.
+        logger.info('Não é necessário converter o arquivo. Não é formato OGG.');
+        resolve(); // Resolve immediately since no conversion is needed.
       }
     });
 
@@ -1132,10 +1132,9 @@ const verifyQueue = async (
   const { queues, greetingMessage, maxUseBotQueues, timeUseBotQueues } = await ShowWhatsAppService(
     wbot.id!,
     ticket.companyId
-  )
+  );
 
   if (queues.length === 1) {
-
     const sendGreetingMessageOneQueues = await Setting.findOne({
       where: {
         key: "sendGreetingMessageOneQueues",
@@ -1145,8 +1144,6 @@ const verifyQueue = async (
 
     if (greetingMessage.length > 1 && sendGreetingMessageOneQueues?.value === "enabled") {
       const body = formatBody(`${greetingMessage}`, contact);
-
-      console.log('body2', body)
       await wbot.sendMessage(
         `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
         {
@@ -1156,7 +1153,6 @@ const verifyQueue = async (
     }
 
     const firstQueue = head(queues);
-    
     let chatbot = false;
 
     if (firstQueue?.options) {
@@ -1509,7 +1505,7 @@ export const handleRating = async (
     // Remover esses campos, já que queremos manter a fila
     queueOptionId: null,
     userId: null,
-    status: "closed", 
+    status: "closed",
     // Não removemos queueId, pois a fila deve ser mantida
   });
 
@@ -1849,12 +1845,12 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
         );
 
         await verifyMessage(sendMsg, ticket, ticket.contact);
-		        if (currentOption.mediaPath !== null && currentOption.mediaPath !== "")  {
+        if (currentOption.mediaPath !== null && currentOption.mediaPath !== "") {
 
-              const filePath = path.resolve("public", "company" + ticket.companyId, currentOption.mediaPath);
+          const filePath = path.resolve("public", "company" + ticket.companyId, currentOption.mediaPath);
 
 
-              const optionsMsg = await getMessageOptions(currentOption.mediaName, filePath, textMessage.text, ticket.companyId.toString());
+          const optionsMsg = await getMessageOptions(currentOption.mediaName, filePath, textMessage.text, ticket.companyId.toString());
 
           let sentMessage = await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, { ...optionsMsg });
 
@@ -1981,7 +1977,7 @@ const handleMessage = async (
           groupContactCache.set(msg.key.remoteJid, result);
         }
         return result;
-      });      
+      });
     }
 
     const whatsapp = await ShowWhatsAppService(wbot.id!, companyId);
@@ -2008,12 +2004,12 @@ const handleMessage = async (
       },
       order: [["createdAt", "DESC"]],
     });
-    
+
 
     if (unreadMessages === 0 && whatsapp.complationMessage && formatBody(whatsapp.complationMessage, contact).trim().toLowerCase() === lastMessage?.body.trim().toLowerCase()) {
       return;
     }
-    
+
 
     const ticket = await FindOrCreateTicketService(contact, wbot.id!, unreadMessages, companyId, groupContact);
 
@@ -2022,9 +2018,9 @@ const handleMessage = async (
     await provider(ticket, msg, companyId, contact, wbot as WASocket);
 
     //DESABILITADO INTERAÇÕES NOS GRUPOS USANDO O && !isGroup e if (isGroup || contact.disableBot)//
-	
-	// voltar para o menu inicial
-	
+
+    // voltar para o menu inicial
+
     // voltar para o menu inicia
     if (bodyMessage == "#" && !isGroup) {
       await ticket.update({
@@ -2045,7 +2041,7 @@ const handleMessage = async (
 
 
     try {
-       if (!msg.key.fromMe && !contact.isGroup) {
+      if (!msg.key.fromMe && !contact.isGroup) {
         /**
          * Tratamento para avaliação do atendente
          */
@@ -2097,9 +2093,8 @@ const handleMessage = async (
       Sentry.captureException(e);
       console.log(e);
     }
-	
 
-    // Atualiza o ticket se a ultima mensagem foi enviada por mim, para que possa ser finalizado. 
+    // Atualiza o ticket se a ultima mensagem foi enviada por mim, para que possa ser finalizado.
     try {
       await ticket.update({
         fromMe: msg.key.fromMe,
@@ -2114,7 +2109,7 @@ const handleMessage = async (
     } else {
       await verifyMessage(msg, ticket, contact);
     }
-	
+    
     if (isGroup || contact.disableBot) {
       return;
     }
@@ -2129,7 +2124,7 @@ const handleMessage = async (
 
 
     try {
-      if (!msg.key.fromMe && scheduleType) {
+      if (!msg.key.fromMe && scheduleType && ticket.status !== "open") {
         /**
          * Tratamento para envio de mensagem quando a empresa está fora do expediente
          */
@@ -2196,7 +2191,7 @@ const handleMessage = async (
             const endTimeB = moment(schedule.endTimeB, "HH:mm");
 
             if (now.isBefore(startTimeA) || now.isAfter(endTimeA) && (now.isBefore(startTimeB) || now.isAfter(endTimeB))) {
-              const body = `${queue.outOfHoursMessage}`;
+			  const body = `${queue.outOfHoursMessage}`;
               console.log('body:23801', body)
               const debouncedSentMessage = debounce(
                 async () => {
@@ -2336,7 +2331,7 @@ const handleMessage = async (
           const startTimeA = moment(schedule.startTimeA, "HH:mm");
           const endTimeA = moment(schedule.endTimeA, "HH:mm");
           const startTimeB = moment(schedule.startTimeB, "HH:mm");
-          const endTimeB = moment(schedule.endTimeB, "HH:mm");		  
+          const endTimeB = moment(schedule.endTimeB, "HH:mm");
 
           if (now.isBefore(startTimeA) || now.isAfter(endTimeA) && (now.isBefore(startTimeB) || now.isAfter(endTimeB))) {
             const body = queue.outOfHoursMessage;
@@ -2502,7 +2497,12 @@ const verifyCampaignMessageAndCloseTicket = async (
     const messageRecord = await Message.findOne({
       where: { id: message.key.id!, companyId },
     });
+
+    if (!messageRecord) return;
+
     const ticket = await Ticket.findByPk(messageRecord.ticketId);
+    if (!ticket) return;
+
     await ticket.update({ status: "closed" });
 
     io.to(`company-${ticket.companyId}-open`)
@@ -2533,7 +2533,7 @@ const filterMessages = (msg: WAMessage): boolean => {
       WAMessageStubType.E2E_DEVICE_CHANGED,
       WAMessageStubType.E2E_IDENTITY_CHANGED,
       WAMessageStubType.CIPHERTEXT
-    ].includes(msg.messageStubType as WAMessageStubType)
+    ].includes(msg.messageStubType)
   )
     return false;
 
