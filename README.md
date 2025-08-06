@@ -6,7 +6,7 @@ Promoção por tempo indeterminado: Versão Paga de R$ 70,00 por 45,00 = Pronta 
 
 Para adquirir a versão mais atualizada 6.0.0 e ter acesso a outras versões que são vendidas no mercado como bônus, acesse uma das opções de checkout a seguir:
 
-InfinityPay:
+InfinitePay:
 https://loja.infinitepay.io/launcher-tecnologia/aep0253-script-crm-whaticket-gold-com-saas-e-kanba
 
 Kirvano:
