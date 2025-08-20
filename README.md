@@ -169,3 +169,8 @@ https://drive.google.com/file/d/1Kjd-9NurK-7gw7_22-uIsZoB0MZ74YFp/view?usp=drive
 
 Personalizações:</br>
 As instruções para alteração de cores, logo, icones e nome da instalação estão no arquivo de instruções.
+
+Documentação em Desenvolvimento:
+```
+https://launcher-and-co.gitbook.io/whaticketsaas/
+```
