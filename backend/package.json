@@ -25,7 +25,7 @@
     "@hapi/boom": "^9.1.4",
     "@sentry/node": "^6.18.1",
     "@types/fs-extra": "^11.0.4",
-    "@whiskeysockets/baileys": "^6.7.18",
+    "@whiskeysockets/baileys": "^6.7.19",
     "async-mutex": "^0.4.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
