@@ -150,7 +150,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
 
         const { id, name, provider } = whatsappUpdate;
 
-        const version = [2, 3000, 1025951978];
+        const version = [2, 3000, 1026560467];
         const isLatest = false; // Versão manual definida
         const isLegacy = provider === "stable" ? true : false;
 
@@ -175,7 +175,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             creds: state.creds,
             keys: makeCacheableSignalKeyStore(state.keys, logger),
           },
-          version: [2, 3000, 1025951978],
+          version: [2, 3000, 1026560467],
           browser: Browsers.appropriate("Desktop"),
           defaultQueryTimeoutMs: undefined,
           msgRetryCounterCache,
