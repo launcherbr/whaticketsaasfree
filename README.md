@@ -4,6 +4,20 @@ Uma plataforma de atendimento robusta baseada no **Whaticket Gold**, aprimorada 
 
 -----
 
+#### **🛒 Adquira sua Licença Comercial e Acesso ao Suporte**
+
+Para uso comercial, revenda ou exploração da plataforma como SaaS, é obrigatória a aquisição de uma licença.
+
+  * [Loja InfinitePay](https://loja.infinitepay.io/launcher-tecnologia/aep0253-script-crm-whaticket-gold-com-saas-e-kanba/)
+  * [Checkout Kirvano](https://pay.kirvano.com/a5103244-08d5-418f-8221-7172849dd65f)
+  * [Anúncio DFG](https://www.dfg.com.br/pt/outros/script-crm-whaticket-gold-com-saas-e-kanban-inclusos-939289065)
+
+Renovação de Acesso: 
+
+Se estiver migrando de outras versões ou precisar renovar seu acesso a nosso conteúdo, utilize o link com valor promocional.
+
+* [Loja InfinitePay](https://loja.infinitepay.io/launcher-tecnologia/ine6649-whaticket-renovacao)
+
 ### **✨ Funcionalidades Principais**
 
   * **Gestão Visual:** Quadro **Kanban** integrado para organizar e priorizar tickets.
@@ -42,14 +56,6 @@ Para garantir a melhor performance, seu servidor deve atender às seguintes espe
 
   * **Documentação Completa:** Acesse nosso guia de instalação e configuração em: [launcher-and-co.gitbook.io/whaticketsaas/](https://launcher-and-co.gitbook.io/whaticketsaas/).
   * **Suporte Técnico:** O suporte técnico é um serviço exclusivo, vinculado à aquisição da Licença Comercial. Após a compra, entre em contato via WhatsApp para obter seu acesso.
-
-#### **🛒 Adquira sua Licença Comercial e Acesso ao Suporte**
-
-Para uso comercial, revenda ou exploração da plataforma como SaaS, é obrigatória a aquisição de uma licença.
-
-  * [Loja InfinitePay](https://loja.infinitepay.io/launcher-tecnologia/aep0253-script-crm-whaticket-gold-com-saas-e-kanba/)
-  * [Checkout Kirvano](https://pay.kirvano.com/a5103244-08d5-418f-8221-7172849dd65f)
-  * [Anúncio DFG](https://www.dfg.com.br/pt/outros/script-crm-whaticket-gold-com-saas-e-kanban-inclusos-939289065)
 
 -----
 
